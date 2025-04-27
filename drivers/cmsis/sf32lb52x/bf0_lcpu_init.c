@@ -70,20 +70,13 @@
 #if defined(SOC_BF0_HCPU)
 extern void lcpu_patch_install();
 extern void lcpu_patch_install_rev_b();
+extern void lcpu_img_install(void);
 
 static uint8_t g_lcpu_rf_cal_disable;
 
 __WEAK void adc_resume(void)
 {
 }
-
-#if (!defined(SF32LB52X_REV_B)) && !defined(LCPU_RUN_ROM_ONLY)
-__WEAK void lcpu_img_install(void)
-{
-}
-#else
-#define lcpu_img_install()
-#endif
 
 __WEAK void lcpu_rom_config(void)
 {
@@ -166,7 +159,7 @@ uint8_t lcpu_power_on(void)
     HAL_LPAON_ConfigStartAddr((uint32_t *)HCPU_LCPU_CODE_START_ADDR);
     lcpu_ble_patch_install();
     HAL_RCC_ReleaseLCPU();
-    HAL_HPAON_CANCEL_LP_ACTIVE_REQUEST();
+    //HAL_HPAON_CANCEL_LP_ACTIVE_REQUEST();
 #ifdef USING_SEC_ENV
     // hcpu_exit_safe_mode()
     HAL_SECU_SetAttr(SECU_MOD_HCPU, SECU_ROLE_MASTER, SECU_FLAG_NONE);

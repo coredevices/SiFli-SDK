@@ -89,6 +89,10 @@ typedef struct
 } HAL_LCPU_CONFIG_T;
 #endif
 
+__WEAK void lcpu_img_install(void)
+{
+}
+
 
 #if defined(SF32LB55X)
     #define HAL_LCPU_CONFIG_START_ADDR 0x20137000

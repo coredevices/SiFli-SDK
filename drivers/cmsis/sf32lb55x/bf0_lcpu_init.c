@@ -60,20 +60,13 @@
 #if defined(SOC_BF0_HCPU)
 extern void lcpu_patch_install();
 extern void lcpu_patch_install_rev_b();
+extern void lcpu_img_install(void);
 
 static uint8_t g_lcpu_rf_cal_disable;
 
 __WEAK void adc_resume(void)
 {
 }
-
-#if defined(LCPU_RUN_ROM_ONLY)
-#define lcpu_img_install()
-#else
-__WEAK void lcpu_img_install(void)
-{
-}
-#endif
 
 __WEAK void lcpu_rom_config(void)
 {
