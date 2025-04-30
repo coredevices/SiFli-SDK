@@ -159,7 +159,7 @@ uint8_t lcpu_power_on(void)
     HAL_LPAON_ConfigStartAddr((uint32_t *)HCPU_LCPU_CODE_START_ADDR);
     lcpu_ble_patch_install();
     HAL_RCC_ReleaseLCPU();
-    //HAL_HPAON_CANCEL_LP_ACTIVE_REQUEST();
+    HAL_HPAON_CANCEL_LP_ACTIVE_REQUEST();
 #ifdef USING_SEC_ENV
     // hcpu_exit_safe_mode()
     HAL_SECU_SetAttr(SECU_MOD_HCPU, SECU_ROLE_MASTER, SECU_FLAG_NONE);
