@@ -344,7 +344,7 @@ static HAL_StatusTypeDef DMA_AllocChannel(DMA_HandleTypeDef *hdma, bool init)
             DMA_Init(hdma);
         }
         pool[i].handle = hdma;
-        HAL_NVIC_SetPriority(irq_type, 0, 0); //TODO:
+        NVIC_SetPriority(irq_type,hdma->Init.IrqPrio);
         HAL_NVIC_EnableIRQ(irq_type);
     }
 
