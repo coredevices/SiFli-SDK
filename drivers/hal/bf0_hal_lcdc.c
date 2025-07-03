@@ -1213,6 +1213,9 @@ static HAL_StatusTypeDef LayerUpdate(LCDC_HandleTypeDef *lcdc)
         reg = 0;
         switch (cfg->data_format)
         {
+        case LCDC_PIXEL_FORMAT_RGB332:
+            reg |= LCD_IF_LAYER0_CONFIG_FORMAT_RGB8332;
+            break;
         case LCDC_PIXEL_FORMAT_RGB565:
             reg |= LCD_IF_LAYER0_CONFIG_FORMAT_RGB565;
             break;
