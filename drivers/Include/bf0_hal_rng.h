@@ -237,7 +237,9 @@ typedef  void (*pRNG_RandReadyCallbackTypeDef)(RNG_HandleTypeDef *hrng, uint32_t
   * @param  \__HANDLE__: RNG Handle
   * @retval None
   */
-#define __HAL_RNG_ENABLE(__HANDLE__)
+#define __HAL_RNG_ENABLE(__HANDLE__)  do { \
+                                        (__HANDLE__)->Instance->CTRL &= ~(TRNG_CTRL_GEN_SEED_STOP|TRNG_CTRL_GEN_RAND_NUM_STOP); \
+                                      } while (0)
 
 /**
   * @brief  Disable the RNG peripheral.
