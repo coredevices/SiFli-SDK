@@ -303,7 +303,18 @@ typedef struct
 #define LPTIM_FLAG_UEWKUP                        LPTIM_ISR_UEWKUP
 #define LPTIM_FLAG_OFWKUP                        LPTIM_ISR_OFWKUP
 #define LPTIM_FLAG_OCWKUP                        LPTIM_ISR_OCWKUP
+/**
+  * @}
+  */
 
+/** @defgroup LPTIM_ICR_Definition LPTIM interrupt and status clear Definition
+  * @{
+  */
+#define LPTIM_IC_UECLR                            LPTIM_ICR_UECLR
+#define LPTIM_IC_OFCLR                            LPTIM_ICR_OFCLR
+#define LPTIM_IC_OCCLR                            LPTIM_ICR_OCCLR
+#define LPTIM_IC_ETCLR                            LPTIM_ICR_ETCLR
+#define LPTIM_IC_WKUPCLR                          LPTIM_ICR_WKUPCLR
 /**
   * @}
   */
@@ -404,13 +415,13 @@ typedef struct
   * @param  \__HANDLE__ LPTIM handle
   * @param  \__FLAG__   LPTIM flag to check
   *            This parameter can be a value of:
-  *            @arg LPTIM_FLAG_DOWN    : Counter direction change up Flag.
-  *            @arg LPTIM_FLAG_UP      : Counter direction change down to up Flag.
-  *            @arg LPTIM_FLAG_ARROK   : Autoreload register update OK Flag.
-  *            @arg LPTIM_FLAG_CMPOK   : Compare register update OK Flag.
-  *            @arg LPTIM_FLAG_ET      : External trigger edge event Flag.
-  *            @arg LPTIM_FLAG_ARRM    : Autoreload match Flag.
-  *            @arg LPTIM_FLAG_CMPM    : Compare match Flag.
+  *            @arg LPTIM_FLAG_UE    : LPTIM update event occurred.
+  *            @arg LPTIM_FLAG_OF    : Overflow occurred.
+  *            @arg LPTIM_FLAG_OC    : Output compare match.
+  *            @arg LPTIM_FLAG_ET    : External trigger edge event.
+  *            @arg LPTIM_FLAG_UEWKUP    : Indicates update event wakeup occurred.
+  *            @arg LPTIM_FLAG_OFWKUP    : Indicates overflow wakeup occurred.
+  *            @arg LPTIM_FLAG_OCWKUP    : Indicates output compare wakeup occurred.
   * @retval The state of the specified flag (SET or RESET).
   */
 #define __HAL_LPTIM_GET_FLAG(__HANDLE__, __FLAG__)          (((__HANDLE__)->Instance->ISR &(__FLAG__)) == (__FLAG__))
@@ -420,11 +431,11 @@ typedef struct
   * @param  \__HANDLE__ LPTIM handle.
   * @param  \__FLAG__   LPTIM flag to clear.
   *            This parameter can be a value of:
-  *            @arg LPTIM_IT_UEIE    : Update event interrupt.
-  *            @arg LPTIM_IT_OFIE    : Overflow Interrupt.
-  *            @arg LPTIM_IT_OCIE    : Output compare Interrupt.
-  *            @arg LPTIM_IT_ETIE    : External trigger valid edge Interrupt.
-  *            @arg LPTIM_IT_UEWE    : all Wakeup Interrupt.
+  *            @arg LPTIM_IC_UECLR    : Update event clear flag.
+  *            @arg LPTIM_IC_OFCLR    : Overflow clear flag.
+  *            @arg LPTIM_IC_OCCLR    : Output compare clear flag.
+  *            @arg LPTIM_IC_ETCLR    : External trigger valid edge clear flag.
+  *            @arg LPTIM_IC_WKUPCLR    : Wakeup status clear flag.
   * @retval None.
   */
 #define __HAL_LPTIM_CLEAR_FLAG(__HANDLE__, __FLAG__)         ((__HANDLE__)->Instance->ICR  = (__FLAG__))
