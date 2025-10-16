@@ -1442,7 +1442,6 @@ __HAL_ROM_USED int HAL_QSPI_LOCK_OTP(FLASH_HandleTypeDef *hflash, uint32_t addr)
     if (addr < SPI_FLASH_OTP_BASE || addr > SPI_FLASH_OTP_BASE + (hflash->ctable->mode_reg << 12))
         return -1;
 
-    HAL_FLASH_CLEAR_FIFO(hflash, HAL_FLASH_CLR_RX_TX_FIFO);
     // get LB bits to check if OTP LOCKED (S11 ~ S13)
     srh = srl = value = 0;
     dlen = 1;
