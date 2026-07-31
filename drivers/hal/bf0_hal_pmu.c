@@ -216,9 +216,10 @@ __HAL_ROM_USED HAL_StatusTypeDef HAL_PMU_RC10Kconfig(void)
 #endif
 
 #ifdef SF32LB52X
-    /* reduce VBAT_LDO output voltage to 3V to avoid leakage current if VCC is lower than 3.3V */
+    /* Keep VBAT_LDO at the 3.3V default so the RTC/AON domain (and therefore
+     * the time) is preserved across hibernate. */
     MODIFY_REG(hwp_pmuc->AON_LDO, PMUC_AON_LDO_VBAT_LDO_SET_VOUT_Msk,
-               MAKE_REG_VAL(0, PMUC_AON_LDO_VBAT_LDO_SET_VOUT_Msk, PMUC_AON_LDO_VBAT_LDO_SET_VOUT_Pos));
+               MAKE_REG_VAL(6, PMUC_AON_LDO_VBAT_LDO_SET_VOUT_Msk, PMUC_AON_LDO_VBAT_LDO_SET_VOUT_Pos));
 
     /* turn off LDO2 to ensure flash changing to 3byte address mode when boot up */
     HAL_PMU_ConfigPeriLdo(PMU_PERI_LDO2_3V3, 0, 1);
